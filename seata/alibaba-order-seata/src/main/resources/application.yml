@@ -1,0 +1,56 @@
+server:
+    port: 8184
+#DB Configuration:
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seata-order?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+  application:
+    name: alibaba-order-seata
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      discovery:
+        group: SEATA_GROUP  # 注册组 要与 seata 相同
+        namespace: e508c2be-0d50-469f-bfe4-dd605dbff2ee
+      config:
+        group: SEATA_GROUP  # 注册组 要与 seata 相同
+        namespace: e508c2be-0d50-469f-bfe4-dd605dbff2ee
+
+seata:
+  enabled: true
+  tx-service-group: default_tx_group
+  registry:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      application: seata-server
+      username: nacos
+      password: nacos
+      group: SEATA_GROUP
+      namespace: e508c2be-0d50-469f-bfe4-dd605dbff2ee
+  config:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos
+      group: SEATA_GROUP
+      namespace: e508c2be-0d50-469f-bfe4-dd605dbff2ee
+      data-id: seataServer # 读取 nacos seata 配置
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/OrderMapper.xml
+  #config-location: classpath:mybatis-config.xml
+  type-aliases-package: com.example.order.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+
+#TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF
+logging:
+  level:
+    root: info
+    com.example.order: debug

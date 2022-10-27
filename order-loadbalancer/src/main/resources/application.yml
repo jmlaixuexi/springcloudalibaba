@@ -1,0 +1,16 @@
+server:
+  port: 8680
+spring:
+  application:
+    name: order-loadbalancer
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+    loadbalancer:
+      ribbon:
+        enabled: false #使用spring loadbalancer，弃用ribbon
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

@@ -1,0 +1,21 @@
+server:
+  port: 8380
+ribbon:
+  eager-load:
+    enabled: true # 开启ribbon饥饿加载
+    clients: stock-nacos # 配置stock-nacos使用ribbon饥饿加载，多个使用逗号分隔
+spring:
+  application:
+    name: order-ribbon
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+stock-nacos:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.example.ribbon.rule.CustomRule # com.alibaba.cloud.nacos.ribbon.NacosRule
+

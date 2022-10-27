@@ -1,0 +1,18 @@
+server:
+  port: 8580
+spring:
+  application:
+    name: stock-nacos
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      #discovery:
+        #  username: nacos
+        #password: nacos
+        #namespace: public
+        #ephemeral: true  #永久注册
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

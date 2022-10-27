@@ -1,0 +1,14 @@
+server:
+  port: 8180
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: api-gateway
+  cloud:
+    gateway:  # gateway配置
+      discovery:
+        locator:
+          enabled: true # 是否启动自动识别nacos服务
+    nacos:
+      server-addr: 127.0.0.1:8848

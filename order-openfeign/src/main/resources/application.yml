@@ -1,0 +1,30 @@
+server:
+  port: 8780
+spring:
+  application:
+    name: order-openfeign
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+#springboot默认的日志级别是info，feign的debug日志就不会输出
+logging:
+  level:
+    com.example.order.feign: debug
+#feign日志局部配置
+feign:
+  client:
+    config:
+      product-nacos:  # 请求服务名称
+        loggerLevel: BASIC # 基础日志
+        # contract: feign.Contract.Default  # 设置为默认的锲约
+        connectTimeout: 5000  # 连接超时时间，默认2s
+        readTimeout: 10000  # 请求处理超时时间，默认5s
+        requestInterceptors[0]:
+          com.example.order.intercptor.feign.CustomFeignIntercptor
+
+

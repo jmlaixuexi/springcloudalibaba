@@ -1,0 +1,13 @@
+server:
+  port: 8280
+spring:
+  application:
+    name: order-nacos
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
